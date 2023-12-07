@@ -1,0 +1,114 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.box{
+height:125px;
+width:200px;
+border:2px solid red;
+float:left;
+text-align:center;
+padding-top:75px;
+}
+</style>
+
+</head>
+<body>
+<div style="width: 625px">
+<div class="dv box" id="dv1"></div>
+<div class="dv box" id="dv2"></div>
+<div class="dv box" id="dv3"></div>
+<div class="dv box" id="dv4"></div>
+<div class="dv box" id="dv5"></div>
+<div class="dv box" id="dv6"></div>
+
+<div class="dv box" id="dv7"></div>
+<div class="dv box" id="dv8"></div>
+<div class="dv box" id="dv9"></div>
+</div>
+<div>
+<h1 id='win' style="text-align:center"></h1>
+<h1 id='over' style="text-align:center"></h1>
+</div>
+<script>
+
+
+var n=1;
+var arr=[];
+
+var con1=['dv1','dv5','dv9'];
+var con2=['dv3','dv5','dv7'];
+var con3=['dv1','dv2','dv3'];
+var con4=['dv4','dv5','dv6'];
+var con5=['dv7','dv8','dv9'];
+var con6=['dv1','dv4','dv7'];
+var con7=['dv2','dv5','dv8'];
+var con8=['dv3','dv6','dv9'];
+var con=[con1,con2,con3,con4,con5,con6,con7,con8];
+
+var Py1=[];
+var Py2=[];
+
+$('.dv').click(function(){
+
+
+    var boxid=$(this).attr('id');
+	if(arr.indexOf(boxid)<0)
+	{
+	
+if(n%2==0)
+{
+$(this).html('<i class="fa fa-close" style="font-size:36px"></i>');
+Py2.push(boxid);
+n++;
+}
+else{
+$(this).html('<i class="fa fa-circle-o" style="font-size:48px;color:red"></i>');
+Py1.push(boxid);
+n++;
+}
+arr.push(boxid);
+}
+
+con.forEach( function( value ) {
+    var py1count=0;
+    var py2count=0;
+   value.forEach( function( xyz ) {
+   if( Py1.indexOf(xyz)!=-1)
+   {
+   py1count++;
+   }
+   if( Py2.indexOf(xyz)!=-1)
+   {
+   py2count++;
+   }
+	
+});
+
+if(py1count>=3)
+{
+
+$('#win').html('<i class="fa fa-address-book" style="font-size:36px;color:red">Py1 is win !!!!!!!</i>');
+}
+else if(py2count>=3){
+
+$('#win').html('<i class="fa fa-address-book" style="font-size:36px">Py2 is win !!!!!!!</i>');
+}
+else if(Py1.length+Py2.length==9){
+
+$('#over').text('Try Again.....  Game Over !');
+}
+
+});
+
+
+
+
+})
+</script>
+
+</body>
+</html>
+
+
